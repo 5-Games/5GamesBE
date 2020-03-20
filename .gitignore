@@ -22,4 +22,4 @@
 /config/master.key
 
 # JWT encode secret
-config/application.yml
+/config/application.yml
