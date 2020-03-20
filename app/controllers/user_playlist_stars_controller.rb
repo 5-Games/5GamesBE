@@ -1,0 +1,2 @@
+class UserPlaylistStarsController < ApplicationController
+end

@@ -10,10 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_125804) do
+ActiveRecord::Schema.define(version: 2020_03_20_235049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: :cascade do |t|
+    t.string "home"
+    t.string "away"
+    t.integer "home_score"
+    t.integer "away_score"
+    t.string "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "playlist_games", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.bigint "playlist_id", null: false
+    t.string "comment"
+    t.integer "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_playlist_games_on_game_id"
+    t.index ["playlist_id"], name: "index_playlist_games_on_playlist_id"
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_playlists_on_user_id"
+  end
+
+  create_table "user_game_stars", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "game_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_user_game_stars_on_game_id"
+    t.index ["user_id"], name: "index_user_game_stars_on_user_id"
+  end
+
+  create_table "user_playlist_stars", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "game_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_user_playlist_stars_on_game_id"
+    t.index ["user_id"], name: "index_user_playlist_stars_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -22,4 +70,11 @@ ActiveRecord::Schema.define(version: 2020_03_20_125804) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "playlist_games", "games"
+  add_foreign_key "playlist_games", "playlists"
+  add_foreign_key "playlists", "users"
+  add_foreign_key "user_game_stars", "games"
+  add_foreign_key "user_game_stars", "users"
+  add_foreign_key "user_playlist_stars", "games"
+  add_foreign_key "user_playlist_stars", "users"
 end
