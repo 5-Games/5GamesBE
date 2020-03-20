@@ -11,5 +11,5 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 # config/application.yml
-JWTsecret: "dontTellThisSecret"
+JWTsecret: "dontTellThisNewSecret"
 
