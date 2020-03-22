@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_03_20_235049) do
   end
 
   create_table "playlists", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.string "description"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 2020_03_20_235049) do
 
   create_table "user_playlist_stars", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "game_id", null: false
+    t.bigint "playlist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_id"], name: "index_user_playlist_stars_on_game_id"
+    t.index ["playlist_id"], name: "index_user_playlist_stars_on_playlist_id"
     t.index ["user_id"], name: "index_user_playlist_stars_on_user_id"
   end
 
@@ -75,6 +75,6 @@ ActiveRecord::Schema.define(version: 2020_03_20_235049) do
   add_foreign_key "playlists", "users"
   add_foreign_key "user_game_stars", "games"
   add_foreign_key "user_game_stars", "users"
-  add_foreign_key "user_playlist_stars", "games"
+  add_foreign_key "user_playlist_stars", "playlists"
   add_foreign_key "user_playlist_stars", "users"
 end

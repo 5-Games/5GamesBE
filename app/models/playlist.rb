@@ -1,6 +1,7 @@
 class Playlist < ApplicationRecord
   belongs_to :user
   has_many :playlist_games
+  has_many :games, through: :playlist_games
 
   # differentiating starred playlist relationship with user
   has_many :user_playlist_stars
