@@ -3,11 +3,7 @@ class GameSerializer < ActiveModel::Serializer
 
   def playlists
     self.object.playlist_games.map do |g|
-      {
-        playlist: g.playlist,
-        comment: g.comment,
-        rating: g.rating,
-      }
+      g
     end
   end
 
