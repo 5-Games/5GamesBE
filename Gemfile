@@ -45,3 +45,6 @@ gem 'jwt'
 
 # For hiding API keys
 gem 'figaro' 
+
+# Active Model Serializers
+gem 'active_model_serializers'
