@@ -2,11 +2,7 @@ class UsersController < ApplicationController
 
   def show
       user = User.find(params[:id])
-      render json: {
-          user: user, 
-          playlists: user.playlists, 
-          starred_playlists: user.starred_playlists, 
-          starred_games: user.games }
+      render json: user
   end
 
   def create
