@@ -10,6 +10,10 @@ class GameSerializer < ActiveModel::Serializer
         title: g.playlist.title,
         comment: g.comment,
         rating: g.rating,
+        user: {
+          username: g.playlist.user.username,
+          id: g.playlist.user.id
+        },
         created_at: g.created_at,
         updated_at: g.updated_at
       }
