@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create(username: 'jack', password_digest: 'password')
-admin = User.create(username: 'admin', password_digest: 'admin')
+user = User.create(username: 'jack', password: 'password')
+admin = User.create(username: 'admin', password: 'admin')
 
 game1 = Game.create(home: 'NYK', away: 'LAL', home_score: 100, away_score: 105, date: '2020-01-05')
 game2 = Game.create(home: 'BOS', away: 'LAC', home_score: 99, away_score: 104, date: '2020-01-05')
