@@ -6,10 +6,15 @@ class AuthController < ApplicationController
     
     def login
         user = User.find_by(username: login_params[:username])
-        # byebug
+        byebug
         if user && user.authenticate(login_params[:password])
             token = JWT.encode({user_id: user.id}, secret, 'HS256')
-            render json: {user: user, token: token}
+            render json: {
+                user: user,
+                user_starred_games: user.games,
+                playlists: user.playlists,
+                starred_playlists: user.starred_playlists, 
+                token: token,}
         else
             render json: {errors: "Could Not Login"}
         end
@@ -21,7 +26,12 @@ class AuthController < ApplicationController
             token = JWT.decode(encoded_token, secret)
             user_id = token[0]['user_id']
             user = User.find(user_id)
-            render json: {user: user}
+            render json: {
+                user: user,
+                user_starred_games: user.games,
+                playlists: user.playlists,
+                starred_playlists: user.starred_playlists,
+            }
         end
     end
 
