@@ -28,6 +28,16 @@ class GamesController < ApplicationController
     end
   end
 
+  def check_game
+    game = Game.find_by(date: params[:date], home: params[:team])
+    if game
+      render json: game
+    else
+      new_game = Game.create_new_game(params[:date], params[:team])
+      render json: new_game
+    end
+  end
+
   private
 
   def game_params
