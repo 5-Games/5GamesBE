@@ -28,6 +28,10 @@ class GamesController < ApplicationController
     end
   end
 
+  def check_game
+    byebug
+  end
+
   private
 
   def game_params

@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   
   post '/login', to: 'auth#login'
   get '/auth', to: 'auth#persist'
+  get '/games/:date/:team', to 'games#check_game'
 
 end
