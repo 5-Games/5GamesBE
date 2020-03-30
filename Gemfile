@@ -48,3 +48,6 @@ gem 'figaro'
 
 # Active Model Serializers
 gem 'active_model_serializers'
+
+# Rest Client
+gem 'rest-client'

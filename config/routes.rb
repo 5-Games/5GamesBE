@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :teams
   resources :user_game_stars
   resources :user_playlist_stars
   resources :playlist_games
@@ -11,6 +12,6 @@ Rails.application.routes.draw do
   
   post '/login', to: 'auth#login'
   get '/auth', to: 'auth#persist'
-  get '/games/:date/:team', to 'games#check_game'
+  get '/games/:date/:team', to: 'games#check_game'
 
 end
