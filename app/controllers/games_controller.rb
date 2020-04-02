@@ -29,6 +29,7 @@ class GamesController < ApplicationController
   end
 
   def check_game
+    byebug
     game = Game.find_by(date: params[:date], home: params[:team])
     if game
       render json: game

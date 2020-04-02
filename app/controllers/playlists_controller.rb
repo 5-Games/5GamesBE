@@ -17,9 +17,9 @@ class PlaylistsController < ApplicationController
     playlist = Playlist.create(title: playlist_params[:title], description: playlist_params[:description], user: user)
     if playlist.valid?
       playlist_params[:games].each do |g|
-        game = Game.find(g[:id])
+        game = Game.find_by(id: g[:id])
         if !game
-          game = Game.create_new_game(g[:date][0, 10], g[:home_team])
+          game = Game.create_new_game(g[:date][0, 10], g[:home_team][:abbreviation])
         end
         PlaylistGame.create(game: game, playlist: playlist, comment: g[:description], rating: g[:rating])
       end
@@ -45,7 +45,7 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :user_id)
+    params.require(:playlist).permit(:title, :description, :user_id, :games)
   end
 
 end
