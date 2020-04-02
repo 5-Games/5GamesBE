@@ -11,7 +11,6 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    byebug
     user = User.find(params[:userId])
     playlist_params = params[:playlist]
     playlist = Playlist.create(title: playlist_params[:title], description: playlist_params[:description], user: user)
@@ -45,7 +44,7 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :user_id, :games)
+    params.require(:playlist).permit(:title, :description, :user_id)
   end
 
 end
