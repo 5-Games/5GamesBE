@@ -16,23 +16,17 @@ class PlaylistsController < ApplicationController
     playlist_params = params[:playlist]
     playlist = Playlist.create(title: playlist_params[:title], description: playlist_params[:description], user: user)
     if playlist.valid?
-      # were the games created??? need to loop through all the games and run the check
-      playlist_params[:games].each do |game|
-        game = Game.find_by(game[:id])
+      playlist_params[:games].each do |g|
+        game = Game.find(g[:id])
         if !game
-          game = Game.create_new_game(params[:date], params[:team])
+          game = Game.create_new_game(g[:date][0, 10], g[:home_team])
         end
+        PlaylistGame.create(game: game, playlist: playlist, comment: g[:description], rating: g[:rating])
       end
       render json: playlist
     else
       render json: { errors: playlist.errors.full_messages }
     end
-    # playlist = Playlist.create(playlist_params)
-    # if playlist.valid?
-    #   render json: playlist
-    # else
-    #   render json: { errors: playlist.errors.full_messages }
-    # end
   end
 
   def update
