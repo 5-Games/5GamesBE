@@ -6,11 +6,11 @@ class PlaylistGamesController < ApplicationController
   end
 
   def create
-    playlist_game = Playlist.create(playlist_game_params)
+    playlist_game = PlaylistGame.create(playlist_game_params)
   end
 
   def update
-    playlist_game = Playlist.find(params[:id])
+    playlist_game = PlaylistGame.find(params[:id])
     if playlist_game.update(playlist_game_params)
       render json: playlist_game
     else
@@ -19,7 +19,7 @@ class PlaylistGamesController < ApplicationController
   end
 
   def destroy
-    Playlist.destroy(params[:id])
+    PlaylistGame.destroy(params[:id])
   end
 
   private
