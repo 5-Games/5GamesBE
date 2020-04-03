@@ -11,8 +11,17 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    playlist = Playlist.create(playlist_params)
+    user = User.find(params[:userId])
+    playlist_params = params[:playlist]
+    playlist = Playlist.create(title: playlist_params[:title], description: playlist_params[:description], user: user)
     if playlist.valid?
+      playlist_params[:games].each do |g|
+        game = Game.find_by(id: g[:id])
+        if !game
+          game = Game.create_new_game(g[:date][0, 10], g[:home_team][:abbreviation])
+        end
+        PlaylistGame.create(game: game, playlist: playlist, comment: g[:description], rating: g[:rating])
+      end
       render json: playlist
     else
       render json: { errors: playlist.errors.full_messages }
