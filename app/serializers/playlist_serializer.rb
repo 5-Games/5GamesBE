@@ -1,5 +1,5 @@
 class PlaylistSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :user_id, :playlist_games, :starred_users
+  attributes :id, :title, :description, :user, :playlist_games, :starred_users
 
   def playlist_games
     self.object.playlist_games.map do |pg|
