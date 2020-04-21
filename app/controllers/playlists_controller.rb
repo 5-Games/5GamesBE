@@ -1,8 +1,13 @@
 class PlaylistsController < ApplicationController
 
   def index
-    playlists = Playlist.all
-    render json: playlists
+    if params[:q]
+      playlists = Playlist.all.select{|pl| pl.title.downcase.include?(params[:q].downcase) || pl.description.downcase.include?(params[:q].downcase)}
+      render json: playlists
+    else
+      playlists = Playlist.all
+      render json: playlists
+    end
   end 
 
   def show
