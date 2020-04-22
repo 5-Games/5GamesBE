@@ -51,3 +51,9 @@ gem 'active_model_serializers'
 
 # Rest Client
 gem 'rest-client'
+
+# Rails 12Factor
+gem 'rails_12factor'
+
+# Foreman
+gem 'foreman'
