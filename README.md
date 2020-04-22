@@ -57,7 +57,7 @@
 
 
 # License
-
+<a href="https://github.com/5-Games/5GamesBE/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/5-Games/5GamesBE?color=blue"></a>
 
 Copyright 2019 © [Jacky Feng](https://github.com/jfeng530) & [Stephen Keating](https://github.com/stephenkeating)
 
