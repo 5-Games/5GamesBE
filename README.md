@@ -45,7 +45,7 @@
 
 &nbsp;
  
-# Back-End
+# Front-End
 [5Games Front-End](https://github.com/5-Games/5GamesFE)
 
 &nbsp;
